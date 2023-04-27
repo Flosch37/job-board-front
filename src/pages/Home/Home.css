@@ -1,0 +1,154 @@
+li{
+    height: 228px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 350px;
+    background-color: #fff;
+    justify-content: center;
+    gap: 11px;
+    border-radius: 6px;
+}
+
+li:hover{
+    box-shadow: 0px 0px 3px 0px rgba(106, 102, 102, 0.75);
+    transition: 0.3s;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+
+span{
+    
+    color: var(--dark-grey);
+}
+
+.li-content h2{
+    font-weight: bold;
+    padding-top: 2px;
+}
+
+
+.li-content{
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.background-img{
+    background-color: var(--violet);
+    border-radius: 15px;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    position: absolute;
+    top: 319px;
+}
+
+.li-content img{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+.li-content2 {
+    display: flex;
+    gap: 14px;
+    align-items: end;
+    font-weight: 400;
+    padding-top: 25px;
+    font-size: var(--unnamed-font-size-16);
+}
+
+.company-title{
+    font-size: var(--unnamed-font-size-16);
+    padding-bottom: 40px;
+}
+
+.location-title{
+    font-size: var(--unnamed-font-size-14);
+    font-weight: bold;
+    padding-bottom: 31px;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0px 32px;
+    padding-top: 20px;
+
+}
+
+.li-content2 p{
+    
+    font-size: var(--unnamed-font-size-14);
+}
+
+li a{
+    font-size: var(--unnamed-font-size-20);
+    color: var(--very-dark-blue);
+    text-decoration: none;
+}
+
+p{
+    color: var(--violet);
+    
+}
+
+.a-more-container{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 104px;
+}
+
+
+
+.a-more{
+    font-size: var(--unnamed-font-size-16);
+    font-family: var(--unnamed-font-family-kumbh-sans);
+    background-color: var(--violet);
+    font-weight: var(--unnamed-font-weight-bold);
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.a-more:hover{
+    background-color: var(--light-violet);
+    transition: 0.3s;
+}
+
+.container {
+    max-width: 1240px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 145px;
+    padding-bottom: 73px;
+    gap: 50px;
+    font-family: var(--unnamed-font-family-kumbh-sans);
+    
+}
+
+@media (max-width: 768px) {
+    li {
+      width: 48%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    li {
+      width: 100%;
+    }
+  }
+  
+

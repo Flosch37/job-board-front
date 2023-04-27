@@ -1,0 +1,10 @@
+.a-now{
+    font-size: var(--unnamed-font-size-16);
+    font-family: var(--unnamed-font-family-kumbh-sans);
+    background-color: var(--violet);
+    font-weight: var(--unnamed-font-weight-bold);
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
