@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Joblist from '../../components/Joblist';
+import CreateJob from '../CreateJob/CreateJob';
 import SearchPage from '../../components/SearchPage';
 import './Home.css';
 
@@ -9,34 +11,41 @@ function Home() {
   const [page, setPage] = useState(1);
   const [noMoreJobs, setNoMoreJobs] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // charger les offres de jobs initiales (première page)
     loadMoreJobs();
   }, []);
 
   const loadMoreJobs = () => {
     const limit = 12;
-    fetch(`http://localhost:8000/jobs?page=${page}&limit=${limit}`)
+    fetch(`http://localhost:8000/jobs`)
       .then(response => response.json())
       .then(newJobs => {
         if (newJobs.length === 0) {
-          // toutes les offres de jobs ont été chargées
           setNoMoreJobs(true);
         } else {
-          // ajouter les nouvelles offres de jobs à l'état `jobs`
           const filteredJobs = newJobs.filter(newJob => !jobs.some(job => job.id === newJob.id));
-          setJobs(prevJobs => [...prevJobs, ...filteredJobs.slice(0, limit)]);
-          // incrémenter le numéro de page
+          setJobs(prevJobs => [...prevJobs, ...filteredJobs.reverse().slice(0, limit)]);
           setPage(prevPage => prevPage + 1);
         }
       })
       .catch(error => console.error('Error fetching jobs:', error));
   };
 
+  const navigateToCreateJob = () => {
+    navigate('/create');
+  };
+
   return (
     <>
       <Header />
       <SearchPage />
+      <div className="create-job-container">
+        <button className="create-job-btn" onClick={navigateToCreateJob}>
+          Create a new job post
+        </button>
+      </div>
       <Joblist jobs={jobs.slice(0, page * 12)} />
 
       {noMoreJobs ? (

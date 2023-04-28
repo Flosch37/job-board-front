@@ -1,5 +1,5 @@
 .main-header {
-    background-image: url('../../../public/img/background.svg');
+    background-image: url('../../assets/background.svg');
     min-height: 12.4rem;
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -144,6 +144,6 @@
 
 @media (max-width: 900px) {
     .main-header {
-        background-image: url('../../../public/img/background-mobile.svg');
+        background-image: url('../../assets/background-mobile.svg');
     }
 }

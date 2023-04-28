@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import JobList from './Joblist';
+import SearchForm from '../assets/icon-search.svg';
+import LocationForm from '../assets/icon-location.svg';
+
 
 function SearchPage() {
   const [searchTerms, setSearchTerms] = useState({ title: '', location: '', fullTimeOnly: false });
@@ -35,9 +38,9 @@ function SearchPage() {
     <div>
       <div className='search-container'>
         <div className='search-content'>
-          <img src="../img/icon-search.svg" alt="" />
+          <img src={SearchForm} alt="icon-search" />
           <input className='search-input' type="text" name="title" placeholder='Filter by title, companies, expertise…' value={searchTerms.title} onChange={handleInputChange} />
-          <img src="../img/icon-location.svg" alt="" />
+          <img src={LocationForm} alt="icon-location" />
           <input className='search-input' type="text" name="location" placeholder='Filter by location…' value={searchTerms.location} onChange={handleInputChange} />
           <label className='check-container'>
             <input type="checkbox" name="fullTimeOnly" checked={searchTerms.fullTimeOnly} onChange={handleInputChange} />

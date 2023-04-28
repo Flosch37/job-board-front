@@ -1,76 +1,146 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import typemasterimg from '../../assets/typemaster.svg';
 import './Single.css';
 
+
 function Single() {
-  const [job, setJob] = useState({});
-  const { jobId } = useParams();
+  const { id } = useParams();
+  const navigate = useNavigate(); 
+
+
+  const [job, setJob] = useState({
+    id: id,
+    title: '',
+    company: '',
+    location: '',
+    postedSince: '',
+    type: '',
+    description: '',
+    requirements: {
+      title: '',
+      list: ['']
+    },
+    whatwedo: {
+      title: '',
+      list: ['']
+    }
+  });  
 
   useEffect(() => {
-    fetch(`http://localhost:8000/jobs/${jobId}`)
-      .then(response => response.json())
-      .then(data => setJob(data))
-      .catch(error => console.error('Error fetching job:', error));
-  }, [jobId]);
+    const getJob = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/jobs/${id}`);
+        const data = await response.json();
+        setJob({
+          id: data.id,
+          title: data.title,
+          company: data.company,
+          location: data.location,
+          postedSince: data.postedSince,
+          type: data.type,
+          description: data.description,
+          requirements: {
+            content: data.requirements.content,
+            list: data.requirements.list
+          },
+          whatwedo: {
+            content: data.whatwedo.content,
+            list: data.whatwedo.list
+          }
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getJob();
+  }, []);
+
+  console.log(job)
+  
+  const handleDelete = async () => {
+    try {
+      const data = await fetch(`http://localhost:8000/jobs/${id}`, {
+        method: 'DELETE',
+      });
+      const response = await data.json();
+      console.log(response);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleUpdate = () => {
+    navigate(`/update/${id}`);
+  };
 
   return (
     <>
-
-    <Header job={job} />
-      <header className="header">
-        <img src="../img/typemaster.svg" alt={job.company} />
-        <div className="job-info">
-          <h2>{job.company}</h2>
-          <span>{job.postedSince}</span>
-          <p>.</p>
-          <span>{job.type}</span>
+      <Header />
+      <header className="header-container">
+        <div className='header'>
+          <div className='header-left'>
+              <div className='background-img-company'>
+                <img src={typemasterimg} alt={job?.company} />
+              </div>
+              <div className="job-info">
+                <h2>{job?.company}</h2>
+              </div>
+          </div>
+            <a className="btn-secondary" href='https://example.com/'>Company Site</a>
         </div>
-        <a className="btn-secondary" href={job.companySite}>Company Site</a>
       </header>
 
       <main className="main">
-        <div className="job-details">
-          <h1>{job.title}</h1>
-          <span className="job-location">{job.location}</span>
-          <button className="btn-primary">Apply Now</button>
+        <div className='job-container'>
+          <div className='update-delete-container'>
+            <button className="btn-update" onClick={handleUpdate}>Update</button>
+            <button className="btn-danger" onClick={handleDelete}>Delete</button>
+          </div>
+          <div className='job-details-container'>
+            <div className="job-details">
+              <div className="job-details-info">
+                <span>{job?.postedSince}</span>
+                <p>.</p>
+                <span>{job?.type}</span>
+              </div>
+              <h1>{job?.title}</h1>
+              <span className="job-location">{job?.location}</span>
+            </div>
+            <button className="btn-primary">Apply Now</button>
 
-          <div className="job-description">
-            <h2>Job Description</h2>
-            <p>{job.description}</p>
+
           </div>
 
+          <div className="job-description">
+            <h2 className='h2-form-single'>Job Description</h2>
+            <p>{job?.description}</p>
+          </div>
           <div className="job-requirements">
             <h2>Requirements</h2>
             <ul>
-              {job?.requirements?.map((requirement, index) => (
-                <li key={index}>{requirement}</li>
+              {job?.requirements.list.map((item, index) => (
+                <li key={index}>{item}</li>
               ))}
             </ul>
-          </div>
 
-          <div className="job-what-we-do">
-            <h2>What You Will Do</h2>
-            <ol>
-              {job?.whatWeDo?.map((activity, index) => (
-                <li key={index}>{activity}</li>
-              ))}
-            </ol>
+            <div className='job-what-you-will-do'>
+              <h2>What you will do</h2>
+              <ul>
+                {job?.whatwedo.list.map((item, index) => ( 
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </main>
 
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-info">
-            <h2>{job.title}</h2>
-            <span>{job.company}</span>
-          </div>
-          <div className='a-more-now'>
-            <a className='a-now' href="#">Apply Now</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

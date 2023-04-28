@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/typemaster.svg';
 
 function JobList(props) {
   const { jobs } = props;
@@ -8,11 +9,11 @@ function JobList(props) {
     <div>
       <ul className='container'>
         {jobs.map(job => (
-          <li key={job.id}>
+          <li className='li-container' key={job.id}>
             <Link to={`/jobs/${job.id}`}>
               <div className='li-content'>
                 <div className='background-img'>
-                  <img src={job.company_logo} alt={job.company} />
+                  <img src={logo} alt="img" />
                 </div>
                 <div className='card-content'>
                   <div className='li-content2'>

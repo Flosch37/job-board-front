@@ -1,9 +1,37 @@
-li{
+
+.create-job-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px;
+}
+
+.create-job-btn{
+    margin-top: 80px;
+    background-color: var(--violet);
+    width: fit-content;
+    color: #fff;
+    font-family: 'Kumbh Sans';
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.create-job-btn:hover{
+    background-color: var(--light-violet);
+    transition: 0.3s;
+    
+}
+
+
+
+
+.li-container{
     height: 228px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    width: 350px;
+    width: 338px;
     background-color: #fff;
     justify-content: center;
     gap: 11px;
@@ -44,11 +72,14 @@ span{
 .background-img{
     background-color: var(--violet);
     border-radius: 15px;
-    width: -moz-fit-content;
-    width: fit-content;
-    display: flex;
-    position: absolute;
-    top: 319px;
+    width: 50px;
+    height: 50px;
+    
+}
+
+::before{
+    display: grid;
+    place-items: center;
 }
 
 .li-content img{
@@ -75,14 +106,14 @@ span{
     font-size: var(--unnamed-font-size-14);
     font-weight: bold;
     padding-bottom: 31px;
+    color: var(--violet);
 }
 
 .card-content{
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 0px 32px;
-    padding-top: 20px;
+    padding-bottom: 35px;
 
 }
 
@@ -101,6 +132,9 @@ p{
     color: var(--violet);
     
 }
+
+
+
 
 .a-more-container{
     display: flex;
@@ -132,12 +166,14 @@ p{
     margin-left: auto;
     padding-right: 1rem;
     padding-left: 1rem;
-    padding-top: 145px;
+    padding-top: 80px;
     padding-bottom: 73px;
     gap: 50px;
     font-family: var(--unnamed-font-family-kumbh-sans);
     
 }
+
+
 
 @media (max-width: 768px) {
     li {
