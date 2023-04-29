@@ -2,6 +2,9 @@
 
 This project is a job board website that allows users to browse, create, update, and delete job offers. It was built using React, and it uses various libraries such as create-react-app, moments, axios, react-toastify, and react-router-dom.
 
+##Demo Video
+https://www.loom.com/share/667c5df8df3c4fba9190ec79fd1cb0d6
+
 ## Usage
 
 The website has several pages, including:
